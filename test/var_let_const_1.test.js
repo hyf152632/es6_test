@@ -1,4 +1,4 @@
-import { sum, constantize } from './../src/var_let_const_1.js'
+import { sum, constantize, getGlobal } from './../src/var_let_const_1.js'
 
 describe('sum fun', () => {
   test('should add 1 and 2, be 3', () => {
@@ -105,5 +105,11 @@ describe('constantize fun', () => {
     expect(() => (obj.b = 'b')).toThrow()
     expect(() => (obj.c.d = 'e')).toThrow()
     expect(obj.a).toBe('a')
+  })
+})
+
+describe('get global object', () => {
+  test('should get global', () => {
+    expect(getGlobal()).toBe(global)
   })
 })
