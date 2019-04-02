@@ -166,7 +166,7 @@ describe('对象的解构赋值，也可以指定默认值', () => {
 describe('Person class', () => {
   class Person {
     constructor(name) {
-      if(typeof name !== 'string') {
+      if (typeof name !== 'string') {
         throw TypeError('name must be a string')
       }
       this.name = name
@@ -180,4 +180,97 @@ describe('Person class', () => {
   test('it throws when name is not a string', () => {
     expect(() => new Person(10)).toThrow()
   })
-});
+})
+
+describe('字符串也可以解构赋值', () => {
+  const [a, b, c, d, e] = 'hello'
+  test('a should be h', () => {
+    expect(a).toBe('h')
+  })
+
+  test('b should be e', () => {
+    expect(b).toBe('e')
+  })
+
+  test('类数组都有一个 length, 因此可以对 length属性解构', () => {
+    let { length: len } = 'hello'
+    expect(len).toBe(5)
+  })
+})
+
+describe('函数参数也可以解构', () => {
+  //解构 + 默认值
+  function move({ x = 0, y = 0 } = {}) {
+    return [x, y]
+  }
+
+  test('should return [0, 0]', () => {
+    expect(move()).toEqual(expect.arrayContaining([0, 0]))
+  })
+
+  //给对象赋默认值
+  function move2({ x, y } = { x: 0, y: 0 }) {
+    return [x, y]
+  }
+
+  test('should return [undefined, undefined]', () => {
+    expect(move2()).toEqual(expect.arrayContaining([0, 0]))
+
+    expect(move2({})).toEqual(expect.arrayContaining([undefined, undefined]))
+  })
+})
+
+describe('赋值解构的用途', () => {
+  test('交换变量', () => {
+    let x = 1
+    let y = 2
+    ;[x, y] = [y, x]
+
+    expect(x).toBe(2)
+    expect(y).toBe(1)
+  })
+
+  test('从函数返回多个值', () => {
+    function example() {
+      return [1, 2, 3]
+    }
+    let [a, b, c] = example()
+
+    expect(a).toBe(1)
+
+    function example2() {
+      return {
+        foo: 1,
+        bar: 2
+      }
+    }
+    let { foo, bar } = example2()
+
+    expect(foo).toBe(1)
+  })
+
+  //函数参数的定义
+
+  //提取 JSON 数据
+
+  test('函数参数的默认值', () => {
+    const jQuery = {}
+    jQuery.ajax = function(
+      url,
+      {
+        async = true,
+        beforeSend = function() {},
+        cache = true,
+        complete = function() {},
+        crossDomain = false,
+        global = true
+        //...
+      } = {}
+    ) {}
+  })
+
+  //遍历 Map 结构
+
+  //模块的指定方法
+  // const {someMethod} = require('someModule')
+})
