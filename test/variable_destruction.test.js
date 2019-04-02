@@ -1,5 +1,4 @@
 import { fibs } from './../src/variable_destruction'
-import { keyToTestName } from 'jest-snapshot/build/utils'
 
 describe('数组的解构赋值', () => {
   test('destruction array', () => {
@@ -162,3 +161,23 @@ describe('对象的解构赋值，也可以指定默认值', () => {
     expect(last).toBe(3)
   })
 })
+
+//other
+describe('Person class', () => {
+  class Person {
+    constructor(name) {
+      if(typeof name !== 'string') {
+        throw TypeError('name must be a string')
+      }
+      this.name = name
+    }
+  }
+
+  test('it throws when name is not provided', () => {
+    expect(() => new Person()).toThrow()
+  })
+
+  test('it throws when name is not a string', () => {
+    expect(() => new Person(10)).toThrow()
+  })
+});
