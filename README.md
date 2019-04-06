@@ -314,3 +314,5 @@ it('should call setLocation with URL, returned by createURL', () => {
 自动化测试有助于创造良好的设计， 良好的设计让代码更易于测试。
 
 自动化而是带来了模块化，高内聚，松耦合和更清晰的设计。
+
+快速反馈等于巨大的信心和灵活性。
