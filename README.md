@@ -31,6 +31,7 @@ const expected = ['Alice', 'Bob'];
 expect(['Alice', 'Bob', 'Eve']).toEqual(expect.arrayContaining(expected));
 expect(['Bob', 'Eve']).not.toEqual(expect.arrayContaining(expected));
 
+expect(arr).toHaveLength(number)  //数组长度
 
 ```
 
@@ -316,3 +317,27 @@ it('should call setLocation with URL, returned by createURL', () => {
 自动化而是带来了模块化，高内聚，松耦合和更清晰的设计。
 
 快速反馈等于巨大的信心和灵活性。
+
+## 良好的设计有利于自动化测试
+
+不好的设计:
+
+- 长函数
+- 一段代码做很多事
+- 代码依赖过多
+- 代码直接依赖第三方代码
+- 代码重复
+- 代码具有不必要的复杂性
+
+良好的设计带来的好处:
+
+- 代码很灵活. 通过高内聚和模块化的函数，我们能够轻松的构建其他函数
+- 每个函数都很简短(只做一件事)
+- 代码松耦合
+- 高测试覆盖率
+
+虽然有很多方法可以改善设计，但良好的自动化测试必然能促进良好的设计。
+
+自动化测试时达到目的的一种手段。真正的目标是开发高度可维护的，有价值的软件，从而能够放心，快速地对其进行修改。
+
+架构和决策设计几个关键准则：可伸缩性，可靠性，可扩展性，安全性，性能等。
